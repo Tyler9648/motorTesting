@@ -37,9 +37,9 @@ void kms(void)
 
 void waitUntilSignal(int pin){          //waits until button is pressed and released
 
-    while(gpioRead(pin) != 1){}           //waiting for button push down
+    while(gpioRead(pin) != 1 && exitProg = 0){}           //waiting for button push down
     
-    while(gpioRead(pin) == 1){}           //waiting for button to be released
+    while(gpioRead(pin) == 1 && exitProg = 0){}           //waiting for button to be released
 
     
     printf("\nbutton pressed!\n\n");
