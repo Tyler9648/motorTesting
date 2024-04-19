@@ -9,11 +9,11 @@ CC = gcc
 
 DEBUG = -g -O0 -I.
 CFLAGS += $(DEBUG)
-
+LIB = -lpigpio
 # USELIB = USE_BCM2835_LIB
 # USELIB = USE_WIRINGPI_LIB
 # USELIB = USE_DEV_LIB
-DEBUG = -D #$(USELIB) 
+#DEBUG = -D #$(USELIB) 
 #ifeq ($(USELIB), USE_BCM2835_LIB)
 #    LIB = -lbcm2835 -lm 
 #else ifeq ($(USELIB), USE_WIRINGPI_LIB)
@@ -22,7 +22,7 @@ DEBUG = -D #$(USELIB)
 #endif
 
 ${TARGET}:${OBJ_O}
-	$(CC) $(CFLAGS) $(OBJ_O) -o $@ $(LIB) -lm -lpigpio
+	$(CC) $(CFLAGS) $(OBJ_O) -o $@ $(LIB) -lm 
 
 %.o : %.c
 	$(CC) $(CFLAGS) -c  $< -o $@

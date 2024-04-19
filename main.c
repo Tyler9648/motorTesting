@@ -24,7 +24,7 @@ void Handler(int signo)                     //handles program interrupt, ex: ctr
     exitProg = 1;
 }
 
-void exit(void)                     
+void kms(void)                     
 {                                          
     printf("\r\nInterrupt handler: Stop motor\r\n");
     Motor_setVelocity(MOTORA, ZERO);       
@@ -50,7 +50,10 @@ int main(void)
     exitProg = 0;                                   //exit when its 1
 
     gpioInitialise();
-    motor_Init();                                    //Motor Initialization
+    if (Motor_Init() == -1){
+        printf("motor lib got fucked, remove before pushing to main repo\n");
+        exit(0);
+    }                                    //Motor Initialization
     signal(SIGINT, Handler);
 
     gpioSetMode(BUTTON_GPIO, PI_INPUT);                  //Button Initialization
@@ -66,7 +69,7 @@ int main(void)
     // Exception handling:ctrl + c
 
     while(exitProg == 0){}                                      //only exits upon program interrupt
-
+    kms();
     //System Exit
     return 0;
 }

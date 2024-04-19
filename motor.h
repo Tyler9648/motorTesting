@@ -34,7 +34,7 @@
 #define ZERO         0
 
 
-void Motor_Init(void);
+int Motor_Init(void);
 void Motor_Accelerate(uint8_t motor, int startVelocity, int endVelocity, int duration);
 void Motor_setVelocity(uint8_t motor, int velocity);
 #endif

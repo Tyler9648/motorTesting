@@ -13,6 +13,10 @@ int motorDriverHandle;
 
 int motorLibInit(void){            //assumes that gpioInitialise was already called in main, intializes motor library
     motorDriverHandle = i2cOpen(I2C_BUS, HAT_ADDR, 0);
+    if (motorDriverHandle < 0){
+        printf("i2cOpen did not intialize :/\n");
+        return -1;
+    }
     motorLib_setPWMFreq(100);
     return 0;
 }
@@ -36,9 +40,20 @@ void motorLib_setPWMFreq(uint16_t freq){
 
     i2cWriteByteData(motorDriverHandle, MODE1, oldmode);
 
-    usleep(5000);            
+    //usleep(5000);            
 
-    i2cWriteByteData(motorDriverHandle, MODE1, oldmode | 0x80);
+    //i2cWriteByteData(motorDriverHandle, MODE1, oldmode | 0x80);
+
+    //i2cWriteByteData(motorDriverHandle, MODE1, 0x10); // dissable the ocilator (set it to sleep mode) to 
+    // change the pre_scale register (the ocilator's frequency)
+
+    // uint8_t test = 60; //0x3C;
+    //i2cWriteByteData(motorDriverHandle, PRESCALE, prescale);
+
+    // wake up the ocilator after changing value
+    //i2cWriteByteData(motorDriverHandle, MODE1, 0x00);
+
+
 }
 
 
@@ -50,12 +65,9 @@ static void motorLib_setPWM(uint8_t channel, uint16_t on, uint16_t off){
 }
 
 
-
 void motorLib_setPWMDutyCycle(uint8_t channel, uint16_t pulse){
     motorLib_setPWM(channel, 0, pulse * (4096 / 100) - 1);
 }
-
-
 
 void motorLib_setLevel(uint8_t channel, uint16_t value){
     if (value == 1){

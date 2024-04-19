@@ -38,14 +38,9 @@
 #define HAT_ADDR            0x40
 
 int motorLibInit(void);
-void motorLib_I2C_init(uint8_t addr);
-void motorLib_I2C_begin(char *i2c_device);
-void motorLib_I2C_slave_init(uint8_t slaveAddr);
-uint8_t motorLib_I2C_write(const char * buf, uint32_t len);
-uint8_t motorLib_I2C_read(uint8_t reg, char* buf, uint32_t len);
-void motorLib_PCA_init(char addr);
 void motorLib_setPWMFreq(uint16_t freq);
 static void motorLib_setPWM(uint8_t channel, uint16_t on, uint16_t off);
 void motorLib_setPWMDutyCycle(uint8_t channel, uint16_t pulse);
 void motorLib_setLevel(uint8_t channel, uint16_t value);
+void motorLib_terminate(void);
 #endif
