@@ -39,9 +39,7 @@ int Motor_Init(void)
 /**
  * Set motor's velocity (direction and speed)
  *
- * @param IN1: IN1 channel
- * @param IN2: IN2 channel 
- * @param PWM: PWM channel 
+ * @param motor: select motor      // MOTORA or MOTORB
  * @param velocity: set velocity.  //(-100~100)
  *
  * Example:

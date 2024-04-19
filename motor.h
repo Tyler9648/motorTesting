@@ -12,8 +12,8 @@
 *
 *
 ******************************************/
-#ifndef __TB6612FNG_
-#define __TB6612FNG_
+#ifndef __MOTOR_
+#define __MOTOR_
 
 #include "motorLibrary.h"
 #include <stdbool.h>
