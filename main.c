@@ -34,7 +34,7 @@ void kms(void)
     exit(0);
 }
 
-
+/*
 void waitUntilSignal(int pin){          //waits until button is pressed and released
 
     while(gpioRead(pin) != 1 && exitProg = 0){}           //waiting for button push down
@@ -43,7 +43,7 @@ void waitUntilSignal(int pin){          //waits until button is pressed and rele
 
     
     printf("\nbutton pressed!\n\n");
-}
+}*/
 
 int main(void)
 {
@@ -56,16 +56,16 @@ int main(void)
     }                                    //Motor Initialization
     signal(SIGINT, Handler);
 
-    gpioSetMode(BUTTON_GPIO, PI_INPUT);                  //Button Initialization
+    //gpioSetMode(BUTTON_GPIO, PI_INPUT);                  //Button Initialization
 
-    waitUntilSignal(BUTTON_GPIO);                    //wait for button to be pressed before continuing
+    //waitUntilSignal(BUTTON_GPIO);                    //wait for button to be pressed before continuing
 
     printf("Start Motor\r\n");
-    Motor_Accelerate(MOTORA, 100, 100, 2500000);      //full speed forward for 2.5 seconds
-    Motor_Accelerate(MOTORA, 100, 15, 5000000);       //slow down to 15% speed over 5 seconds
-    Motor_Accelerate(MOTORA, 0, 0, 1500000);          //stop for 1.5 seconds
-    Motor_Accelerate(MOTORA, 0, -100, 5000000);       //full speed backwards for 5 seconds
-
+    //Motor_Accelerate(MOTORA, 100, 100, 2500000);      //full speed forward for 2.5 seconds
+    //Motor_Accelerate(MOTORA, 100, 15, 5000000);       //slow down to 15% speed over 5 seconds
+    //Motor_Accelerate(MOTORA, 0, 0, 1500000);          //stop for 1.5 seconds
+    //Motor_Accelerate(MOTORA, 0, -100, 5000000);       //full speed backwards for 5 seconds
+    Motor_setVelocity(MOTORA, 20);
     // Exception handling:ctrl + c
 
     while(exitProg == 0){}                                      //only exits upon program interrupt

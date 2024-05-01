@@ -17,6 +17,7 @@ int motorLibInit(void){            //assumes that gpioInitialise was already cal
         printf("i2cOpen did not intialize :/\n");
         return -1;
     }
+    printf("motorDriverHandle: %d\n", motorDriverHandle);
     motorLib_setPWMFreq(100);
     return 0;
 }
